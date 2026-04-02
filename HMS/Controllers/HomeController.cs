@@ -24,7 +24,7 @@ namespace HMS.Controllers
 
         public IActionResult Contact()
         {
-            return View(new Contact { Name = "year2" , Email = "ulk@ac.rw" , Message = "Welcoem to the portal" });
+            return View(new Contact());
         }
 
         [HttpPost]
