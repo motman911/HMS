@@ -1,7 +1,56 @@
+@model IEnumerable<WebApplication1.Models.Patient>
+
 @{
     ViewData["Title"] = "Patient";
 }
 
-<div class="text-center mt-5">
-    <h1 class="display-5">Welcome to Patient Page</h1>
+<div class="mt-4">
+    <h1 class="display-5 text-center mb-3">Welcome to Patient Page</h1>
+
+    <div class="d-flex justify-content-end mb-3">
+        <a asp-controller="Patients" asp-action="Create" class="btn btn-primary">Add Patient</a>
+    </div>
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="table-responsive">
+            <table class="table table-striped table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Date of Birth</th>
+                        <th>Gender</th>
+                        <th>Blood Group</th>
+                        <th>Genotype</th>
+                        <th>Height</th>
+                        <th>Weight</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.FirstName</td>
+                        <td>@item.LastName</td>
+                        <td>@item.DoB.ToShortDateString()</td>
+                        <td>@item.Gender</td>
+                        <td>@item.BloodGroup</td>
+                        <td>@item.Genotype</td>
+                        <td>@item.Height</td>
+                        <td>@item.Weight</td>
+                        <td>
+                            <a asp-controller="Patients" asp-action="Details" asp-route-id="@item.PatientId" class="btn btn-outline-secondary btn-sm">Details</a>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">No patients found. Click Add Patient to create one.</div>
+    }
 </div>

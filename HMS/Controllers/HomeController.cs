@@ -1,5 +1,7 @@
+using HMS.Data;
 using HMS.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using WebApplication1.Models;
 
@@ -7,6 +9,13 @@ namespace HMS.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly App_Db_Contacts _context;
+
+        public HomeController(App_Db_Contacts context)
+        {
+            _context = context;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -40,9 +49,13 @@ namespace HMS.Controllers
             return RedirectToAction(nameof(Contact));
         }
 
-        public IActionResult Patient()
+        public async Task<IActionResult> Patient()
         {
-            return View();
+            var patients = await _context.Patients
+                .AsNoTracking()
+                .ToListAsync();
+
+            return View(patients);
         }
 
          
