@@ -27,6 +27,24 @@ namespace HMS.Controllers
             return View(new Contact { Name = "year2" , Email = "ulk@ac.rw" , Message = "Welcoem to the portal" });
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Contact(Contact contact)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(contact);
+            }
+
+            TempData["ContactSuccess"] = "Your message has been sent successfully.";
+            return RedirectToAction(nameof(Contact));
+        }
+
+        public IActionResult Customer()
+        {
+            return View();
+        }
+
          
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
