@@ -1,8 +1,13 @@
 ﻿@{
-    ViewData["Title"] = "ULK";
+    ViewData["Title"] = "More";
 }
 
 <div class="text-center">
-    <h1 class="display-4">ULK MIS</h1>
-    <p>The link to Mis <a href="https://mis.ulk.ac.rw/Login.aspx"> ULK MIS</a>.</p>
+    <h1 class="display-4">More</h1>
+    <p>Choose the page you want to open.</p>
+
+    <div class="d-flex justify-content-center gap-2 mt-3 flex-wrap">
+        <a asp-controller="Home" asp-action="Contact" class="btn btn-primary">Contact</a>
+        <a asp-controller="Home" asp-action="Patient" class="btn btn-outline-primary">Patient</a>
+    </div>
 </div>

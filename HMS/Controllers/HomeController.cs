@@ -40,7 +40,7 @@ namespace HMS.Controllers
             return RedirectToAction(nameof(Contact));
         }
 
-        public IActionResult Customer()
+        public IActionResult Patient()
         {
             return View();
         }
